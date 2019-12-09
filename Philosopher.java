@@ -4,11 +4,11 @@ import java.util.concurrent.Semaphore;
 public class Philosopher<X> extends Thread {
 	
 	IPhilosopher<X> P; 
-	Semaphore l, r;
+	Semaphore l, r,s;
 	
-	public Philosopher(IPhilosopher<X> t, Semaphore Lchopstick, Semaphore Rchopstick)
+	public Philosopher(Semaphore screenSemaphore, Semaphore Lchopstick, Semaphore Rchopstick)
 	{
-			P = t; l = Lchopstick; r = Rchopstick; }
+			s = screenSemaphore; l = Lchopstick; r = Rchopstick; }
 
 		@SuppressWarnings("unchecked")
 
@@ -18,7 +18,7 @@ public class Philosopher<X> extends Thread {
 
 			try { r.acquire(); } catch(InterruptedException e) { }
 
-			System.out.println("waiting");
+			System.out.println("thinking");
 
 			r.release();
 			
@@ -26,9 +26,13 @@ public class Philosopher<X> extends Thread {
 			
 			try { l.acquire(); } catch(InterruptedException e) { }
 
-			System.out.println("waiting");
+			System.out.println("thinking");
 
 			l.release();
+			
+			try { s.acquire(); } catch(InterruptedException e) { }
+
+			System.out.println("thinking");
 
 			while (true)
 	{ 

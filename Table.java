@@ -4,9 +4,10 @@ import java.util.concurrent.Semaphore;
 
 public class Table implements IPhilosopher{
 	
-	private static stringBuffer buffer = new stringBuffer(10);
+	
 	private static Semaphore Lchopstick = new Semaphore(1);
 	private static Semaphore Rchopstick = new Semaphore(1);
+	private static Semaphore screenSemaphore = new Semaphore(1);
 	
 	public static void main(String[] args) {
 		
@@ -16,11 +17,11 @@ public class Table implements IPhilosopher{
 		 * bufferesemaphore, and screen semaphore. buffer may need changing
 		 * */
 		 
-		Thread Aristotle = new Philosopher<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread Plato = new Philosopher<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread Socrates = new Philosopher<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread Kant = new Philosopher<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread Leibniz = new Philosopher<String>(buffer, Lchopstick, Rchopstick) ;
+		Thread Aristotle = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
+		Thread Plato = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
+		Thread Socrates = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
+		Thread Kant = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
+		Thread Leibniz = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
 		
 		
 		/*
