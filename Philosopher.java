@@ -1,78 +1,49 @@
 package Philosopher;
-
 import java.util.concurrent.Semaphore;
 
-public class Philosopher implements IPhilosopher{
+public class Philosopher<X> extends Thread {
 	
-	private static stringBuffer buffer = new stringBuffer(10);
-	private static Semaphore Lchopstick = new Semaphore(1);
-	private static Semaphore Rchopstick = new Semaphore(1);
+	IPhilosopher<X> P; 
+	Semaphore l, r;
 	
-	public static void main(String[] args) {
-		
-		
-		/*this is how I think it should be formated. in the other
-		 * produconsum class we had 2 threads and they had a buffer,
-		 * bufferesemaphore, and screen semaphore. buffer may need changing
-		 * */
-		 
-		Thread P1 = new Phil<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread P2 = new Phil<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread P3 = new Phil<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread P4 = new Phil<String>(buffer, Lchopstick, Rchopstick) ;
-		Thread P5 = new Phil<String>(buffer, Lchopstick, Rchopstick) ;
-		
-		
-		/*
-		 * marco said we need to use try catch so thats what I'm trying to do here
-		 * We need it so that randomly a philosopher gets hungry and when they do
-		 *  they get put in a queue. At the first opening they grab a chopstick to their left
-		 *  or right. Once they grab left for say, they would need to grab right. However we need to worry
-		 *  about deadlock where each philosopher is hungry and has one chopstick and wont 
-		 *  give it up
-		 */
-		
-		
-		try {Lchopstick.acquire();}
-		catch(InterruptedException e) {}
-		
-		P1.start();
-		
-		
-		
-		System.out.println("Hungry");
-		
-		
-		
+	public Philosopher(IPhilosopher<X> t, Semaphore Lchopstick, Semaphore Rchopstick)
+	{
+			P = t; l = Lchopstick; r = Rchopstick; }
+
+		@SuppressWarnings("unchecked")
+
+		public void run()
+	{ 
+			int n = 0;
+
+			try { r.acquire(); } catch(InterruptedException e) { }
+
+			System.out.println("waiting");
+
+			r.release();
+			
+			int n1 = 0;
+			
+			try { l.acquire(); } catch(InterruptedException e) { }
+
+			System.out.println("waiting");
+
+			l.release();
+
+			while (true)
+	{ 
+				try { r.acquire(); l.acquire(); } catch(InterruptedException e) {}
+//once the philosopher has eaten they can drop the chosticks
+				if (P.hasEaten())
+	{ 
+					//P.add((X) (n + ""));
+
+					System.out.println(P + "ate");
+
+					n = n + 1; 
+					n1 = n1 + 1;
+					}
+//Release both chopsticks when done
 				
-				System.out.println("Philosopher 1:        Philosopher 2:        Philosopher 3:        Philosopher 4:        Philosopher 5:");
-		
-	}
-
-	@Override
-	public boolean hasLeft() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean hasRight() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean hasEaten() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isHungry() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	
-
-}
+				r.release(); l.release();
+	} } }
