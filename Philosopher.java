@@ -30,6 +30,8 @@ public class Philosopher<X> extends Thread {
 
 			l.release();
 			
+			int n2 = 0;
+			
 			try { s.acquire(); } catch(InterruptedException e) { }
 
 			System.out.println("thinking");
@@ -46,8 +48,9 @@ public class Philosopher<X> extends Thread {
 
 					n = n + 1; 
 					n1 = n1 + 1;
+					n2 = n2 + 1;
 					}
 //Release both chopsticks when done
 				
-				r.release(); l.release();
+				s.release();r.release(); l.release();
 	} } }

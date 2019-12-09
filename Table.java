@@ -37,11 +37,14 @@ public class Table implements IPhilosopher{
 		try {Lchopstick.acquire();}
 		catch(InterruptedException e) {}
 		
-		P1.start();
+		Aristotle.start();
+		Plato.start();
+		Socrates.start();
+		Kant.start();
+		Leibniz.start();
 		
 		
-		
-		System.out.println("Hungry");
+
 		
 		
 		
