@@ -20,7 +20,7 @@ public class Philosopher<X> extends Thread {
 
 			System.out.println("thinking");
 
-			r.release();
+		
 			
 			int n1 = 0;
 			
@@ -28,7 +28,7 @@ public class Philosopher<X> extends Thread {
 
 			System.out.println("thinking");
 
-			l.release();
+
 			
 			int n2 = 0;
 			

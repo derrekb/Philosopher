@@ -5,9 +5,14 @@ import java.util.concurrent.Semaphore;
 public class Table implements IPhilosopher{
 	
 	
-	private static Semaphore Lchopstick = new Semaphore(1);
-	private static Semaphore Rchopstick = new Semaphore(1);
+	private static Semaphore chopstick1 = new Semaphore(1);
+	private static Semaphore chopstick2 = new Semaphore(1);
+	private static Semaphore chopstick3 = new Semaphore(1);
+	private static Semaphore chopstick4 = new Semaphore(1);
+	private static Semaphore chopstick5 = new Semaphore(1);
 	private static Semaphore screenSemaphore = new Semaphore(1);
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -17,12 +22,12 @@ public class Table implements IPhilosopher{
 		 * bufferesemaphore, and screen semaphore. buffer may need changing
 		 * */
 		 
-		Thread Aristotle = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
-		Thread Plato = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
-		Thread Socrates = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
-		Thread Kant = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
-		Thread Leibniz = new Philosopher<String>(screenSemaphore, Lchopstick, Rchopstick) ;
-		
+	
+		Thread Aristotle = new Philosopher<String>(screenSemaphore, chopstick1, chopstick2) ;
+		Thread Plato = new Philosopher<String>(screenSemaphore, chopstick2, chopstick3) ;
+		Thread Socrates = new Philosopher<String>(screenSemaphore, chopstick3, chopstick4) ;
+		Thread Kant = new Philosopher<String>(screenSemaphore, chopstick4, chopstick5) ;
+		Thread Leibniz = new Philosopher<String>(screenSemaphore, chopstick5, chopstick1) ;
 		
 		/*
 		 * marco said we need to use try catch so thats what I'm trying to do here
@@ -34,22 +39,15 @@ public class Table implements IPhilosopher{
 		 */
 		
 		
-		try {Lchopstick.acquire();}
-		catch(InterruptedException e) {}
-		
-		Aristotle.start();
-		Plato.start();
-		Socrates.start();
-		Kant.start();
-		Leibniz.start();
-		
-		
-
-		
-		
-		
-				
+	
 				System.out.println("Philosopher 1:        Philosopher 2:        Philosopher 3:        Philosopher 4:        Philosopher 5:");
+		
+				Aristotle.start();
+				Plato.start();
+				Socrates.start();
+				Kant.start();
+				Leibniz.start();
+				
 		
 	}
 
