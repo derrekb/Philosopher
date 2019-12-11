@@ -13,19 +13,6 @@ public class Philosopher<X> extends Thread {
 		@SuppressWarnings("unchecked")
 
 		public void run()	{ 
-			try {s.acquire(); } 
-			catch(InterruptedException e) {}
-			if(this.getName()=="Aristotle ") {
-			System.out.println("Thinking");}
-			if(this.getName()=="Plato ") {
-				System.out.println("             Thinking");}
-			if(this.getName()=="Socrates ") {
-				System.out.println("             "+"             Thinking");}
-			if(this.getName()=="Kant ") {
-				System.out.println("             "+"             "+"             Thinking");}
-			if(this.getName()=="Leibniz "){System.out.println("             "+"             "+"             "+"             Thinking");}
-			s.release();
-			
 			while (true){ 
 				Random R = new Random();
 				if(R.nextInt(1001)<50) {
@@ -64,7 +51,7 @@ public class Philosopher<X> extends Thread {
 					try {s.acquire();}
 					catch(InterruptedException e) {} 
 					if(this.getName()=="Aristotle ") {
-						System.out.println("Eating");}
+						System.out.println("Thinking");}
 					if(this.getName()=="Plato ") {
 						System.out.println("             Thinking");}
 					if(this.getName()=="Socrates ") {
