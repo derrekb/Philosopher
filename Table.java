@@ -22,22 +22,16 @@ public class Table {
 		Thread Socrates = new Philosopher<String>("Socrates ",screenSemaphore, chopstick3, chopstick4) ;
 		Thread Kant = new Philosopher<String>("Kant ",screenSemaphore, chopstick4, chopstick5) ;
 		Thread Leibniz = new Philosopher<String>("Leibniz ",screenSemaphore, chopstick5, chopstick1) ;
+	
 		
-		try { screenSemaphore.acquire(); }
-
-		catch(InterruptedException e) { }
+		Aristotle.start();
+		Plato.start();
+		Socrates.start();
+		Kant.start();
+		Leibniz.start();
 		
-		System.out.println("Philosopher 1:        Philosopher 2:        Philosopher 3:        Philosopher 4:        Philosopher 5:");
 				
-		
-				Aristotle.start();
-				Plato.start();
-				Socrates.start();
-				Kant.start();
-				Leibniz.start();
-				
-		screenSemaphore.release();
-	}
+		}
 
 
 	
