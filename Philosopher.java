@@ -15,7 +15,15 @@ public class Philosopher<X> extends Thread {
 		public void run()	{ 
 			try {s.acquire(); } 
 			catch(InterruptedException e) {}
-			System.out.println(this.getName()+"Thinking");
+			if(this.getName()=="Aristotle ") {
+			System.out.println("Thinking");}
+			if(this.getName()=="Plato ") {
+				System.out.println("             Thinking");}
+			if(this.getName()=="Socrates ") {
+				System.out.println("             "+"             Thinking");}
+			if(this.getName()=="Kant ") {
+				System.out.println("             "+"             "+"             Thinking");}
+			if(this.getName()=="Leibniz "){System.out.println("             "+"             "+"             "+"             Thinking");}
 			s.release();
 			
 			while (true){ 
@@ -23,20 +31,45 @@ public class Philosopher<X> extends Thread {
 				if(R.nextInt(1001)<50) {
 					try {s.acquire(); }
 					catch(InterruptedException e) {}
-					System.out.println(this.getName()+"Hungry");
+					if(this.getName()=="Aristotle ") {
+						System.out.println("Hungry");}
+						if(this.getName()=="Plato ") {
+							System.out.println("             Hungry");}
+						if(this.getName()=="Socrates ") {
+							System.out.println("             "+"             Hungry");}
+						if(this.getName()=="Kant ") {
+							System.out.println("             "+"             "+"             Hungry");}
+						if(this.getName()=="Leibniz ")
+						{System.out.println("             "+"             "+"             "+"             Hungry");}
 					s.release();
 					
-					try {s.acquire();r.acquire(); l.acquire(); }
+					if(this.isAlive()) {
+					try {s.acquire(); r.acquire(); l.acquire(); }
 					catch(InterruptedException e) {} 
-					System.out.println(this.getName()+"Eating");
+					if(this.getName()=="Aristotle ") {
+						System.out.println("Eating");}
+						if(this.getName()=="Plato ") {
+							System.out.println("             Eating");}
+						if(this.getName()=="Socrates ") {
+							System.out.println("             "+"             Eating");}
+						if(this.getName()=="Kant ") {
+							System.out.println("             "+"             "+"             Eating");}
+						if(this.getName()=="Leibniz ")
+						{System.out.println("             "+"             "+"             "+"             Eating");}
 						try {
 							Thread.sleep(1000);
-						} catch (InterruptedException e1) {e1.printStackTrace();}
-					s.release();r.release(); l.release();
+						} catch (InterruptedException e1) {e1.printStackTrace();}  
+					s.release();r.release(); l.release();}
 											
 					try {s.acquire();}
 					catch(InterruptedException e) {} 
-					System.out.println(this.getName()+"Thinking");
+					if(this.getName()=="Plato ") {
+						System.out.println("             Thinking");}
+					if(this.getName()=="Socrates ") {
+						System.out.println("             "+"             Thinking");}
+					if(this.getName()=="Kant ") {
+						System.out.println("             "+"             "+"             Thinking");}
+					if(this.getName()=="Leibniz "){System.out.println("             "+"             "+"             "+"             Thinking");}
 					s.release();
 					} 
 					
