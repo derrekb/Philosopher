@@ -22,7 +22,8 @@ public class Table {
 		Thread Socrates = new Philosopher<String>("Socrates ",screenSemaphore, chopstick3, chopstick4) ;
 		Thread Kant = new Philosopher<String>("Kant ",screenSemaphore, chopstick4, chopstick5) ;
 		Thread Leibniz = new Philosopher<String>("Leibniz ",screenSemaphore, chopstick5, chopstick1) ;
-		System.out.println("Phil0        Phil1       Phil2        Phil3        Phil4");
+		System.out.println("Phil 0        Phil 1       Phil 2      Phil 3        Phil 4");
+		System.out.println("Thinking      Thinking	   Thinking    Thinking      Thinking");
 		
 		Aristotle.start();
 		Plato.start();
