@@ -63,6 +63,8 @@ public class Philosopher<X> extends Thread {
 											
 					try {s.acquire();}
 					catch(InterruptedException e) {} 
+					if(this.getName()=="Aristotle ") {
+						System.out.println("Eating");}
 					if(this.getName()=="Plato ") {
 						System.out.println("             Thinking");}
 					if(this.getName()=="Socrates ") {
