@@ -16,7 +16,6 @@ public class Table {
 	
 	public static void main(String[] args) {
 		
-		
 		Thread Aristotle = new Philosopher<String>("Aristotle ",screenSemaphore, chopstick1, chopstick2) ;
 		Thread Plato = new Philosopher<String>("Plato ",screenSemaphore, chopstick2, chopstick3) ;
 		Thread Socrates = new Philosopher<String>("Socrates ",screenSemaphore, chopstick3, chopstick4) ;
