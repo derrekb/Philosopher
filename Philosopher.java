@@ -15,7 +15,7 @@ public class Philosopher<X> extends Thread {
 		public void run()	{ 
 			while (true){ 
 				Random R = new Random();
-				if(R.nextInt(1001)<50) {
+				if(R.nextInt(1001)<500) {
 					try {s.acquire(); }
 					catch(InterruptedException e) {}
 					if(this.getName()=="Aristotle ") {
@@ -30,7 +30,7 @@ public class Philosopher<X> extends Thread {
 						{System.out.println("             "+"             "+"             "+"             Hungry");}
 					s.release();
 					
-					if(this.isAlive()) {
+					
 					try {s.acquire(); r.acquire(); l.acquire(); }
 					catch(InterruptedException e) {} 
 					if(this.getName()=="Aristotle ") {
@@ -46,8 +46,9 @@ public class Philosopher<X> extends Thread {
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e1) {e1.printStackTrace();}  
-					s.release();r.release(); l.release();}
-											
+						s.release();r.release(); l.release();
+						
+						
 					try {s.acquire();}
 					catch(InterruptedException e) {} 
 					if(this.getName()=="Aristotle ") {
@@ -59,7 +60,8 @@ public class Philosopher<X> extends Thread {
 					if(this.getName()=="Kant ") {
 						System.out.println("             "+"             "+"             Thinking");}
 					if(this.getName()=="Leibniz "){System.out.println("             "+"             "+"             "+"             Thinking");}
-					s.release();
+					s.release();r.release(); l.release();
+					
 					} 
 					
 					
